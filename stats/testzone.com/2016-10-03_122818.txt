@@ -1,0 +1,5 @@
+Browser	Uses
+Chrome Generic	2
+Firefox Generic	1
+IE 11.0 for Desktop	1
+Safari Generic	1
