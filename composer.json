@@ -1,11 +1,11 @@
 {
-  "name": "pxgamer/iis-log-browser-check",
-  "description": "A simple IIS log checker to monitor the browser diversity on websites.",
+  "name": "pxgamer/log-browser-check",
+  "description": "A simple web server log checker to monitor the browser diversity on websites.",
   "minimum-stability": "stable",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "pxgamer\\IISLogBrowserChecker\\": "src/"
+      "pxgamer\\LogBrowserChecker\\": "src/"
     }
   }
 }
