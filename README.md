@@ -1,3 +1,11 @@
-# iis-log-browser-check
+# log-browser-check
 
-A simple IIS log checker to monitor the browser diversity on websites.
+A simple web server log checker to monitor the browser diversity on websites.
+
+## Supported logs
+
+Server | Supported?
+------ | ----------
+IIS    | Yes
+Apache | No
+Nginx  | No
