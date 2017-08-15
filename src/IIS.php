@@ -1,8 +1,8 @@
 <?php
 
-namespace pxgamer\IISLogBrowserChecker;
+namespace pxgamer\LogBrowserChecker;
 
-class InfoCheck
+class IIS
 {
     const ERROR_NOT_TOTAL_PERCENTAGE = 'Possible error, less than 100% total';
 
