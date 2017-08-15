@@ -9,3 +9,8 @@ Server | Supported?
 IIS    | Yes
 Apache | No
 Nginx  | No
+
+## Requirements
+
+- PHP 5.6+
+- Composer
