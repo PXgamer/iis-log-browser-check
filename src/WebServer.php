@@ -36,7 +36,7 @@ class WebServer
 
         $this->siteDir = $this->rootDir . $this->site . DIRECTORY_SEPARATOR;
         $this->aTotalStats = [];
-        $this->aIPs = isset($options['ignored_ips']) ? $options : $this->aIPs;
+        $this->aIPs = isset($options['ignored_ips']) ? $options['ignored_ips'] : $this->aIPs;
 
         $this->aBrowsers = [];
 
