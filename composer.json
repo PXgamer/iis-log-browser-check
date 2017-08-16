@@ -1,0 +1,17 @@
+{
+  "name": "pxgamer/log-browser-check",
+  "description": "A simple web server log checker to monitor the browser diversity on websites.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "pxgamer\\LogBrowserChecker\\": "src/"
+    }
+  },
+  "require": {
+    "browscap/browscap-php": "^3.1"
+  },
+  "scripts": {
+    "post-install-cmd": "php vendor/bin/browscap-php browscap:update"
+  }
+}
