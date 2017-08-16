@@ -59,6 +59,11 @@ class WebServer
         return $this;
     }
 
+    public function getBrowserStats()
+    {
+        return $this->aBrowsers;
+    }
+
     public function execute()
     {
 
