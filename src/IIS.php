@@ -8,9 +8,9 @@ class IIS extends WebServer
     protected $aFiles;
     protected $totalPercent;
 
-    public function __construct($rootDir = null, $options = [])
+    public function __construct(Config $oConfig)
     {
-        Parent::__construct($rootDir, $options);
+        Parent::__construct($oConfig);
         $this->aFiles = 0;
         $this->totalPercent = 0;
 
