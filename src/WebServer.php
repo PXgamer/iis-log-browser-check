@@ -14,6 +14,7 @@ class WebServer
     protected $siteDir;
     protected $aTotalStats;
     protected $aBrowsers;
+    protected $aSessions;
     /**
      * @var Browscap
      */
@@ -39,6 +40,7 @@ class WebServer
         $this->aIPs = isset($options['ignored_ips']) ? $options['ignored_ips'] : $this->aIPs;
 
         $this->aBrowsers = [];
+        $this->aSessions = [];
 
         $this->oBrowscap = new Browscap();
     }
@@ -65,5 +67,11 @@ class WebServer
     protected function statsRunner(\SplFileInfo $fileInfo)
     {
 
+    }
+
+    protected function getSessionFromCookieString($sCookie)
+    {
+        $sCookie = current(explode(';', $sCookie));
+        return current(explode(',', $sCookie));
     }
 }
