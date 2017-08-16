@@ -59,9 +59,9 @@ class IIS extends WebServer
 
                     $sSessionId = $this->getSessionFromCookieString($aCookieSections[1]);
 
-                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[10], $this->aIPs)) {
+                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[6], $this->aIPs)) {
                         $this->aSessions[] = $sSessionId;
-                        $m_sUserStat = $m_aSplitIds[12];
+                        $m_sUserStat = $m_aSplitIds[7];
                         $this->aTotalStats[] = $m_sUserStat;
                     }
                 }
