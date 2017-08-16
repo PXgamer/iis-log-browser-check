@@ -54,14 +54,13 @@ class IIS extends WebServer
                 $m_sLine = fgets($currentFile);
 
                 // Check for site name validity
-                if (preg_match('*PHPSESSID=* ', $m_sLine) == true && substr($m_sLine, 0, 1) !== '#') {
+                if (preg_match('/PHPSESSID=(.*?) /', $m_sLine, $aCookieSections) && substr($m_sLine, 0, 1) !== '#') {
                     $m_aSplitIds = explode(" ", $m_sLine);
-                    $sSID = explode("PHPSESSID=", $m_aSplitIds[13]);
-                    $sSID = $sSID[1];
-                    $sSID = current(explode(';', $sSID));
-                    $sSID = current(explode(',', $sSID));
-                    if (!in_array($sSID, $this->sSessions) && !in_array($m_aSplitIds[10], $this->aIPs)) {
-                        $this->sSessions[] = $sSID;
+
+                    $sSessionId = $this->getSessionFromCookieString($aCookieSections[1]);
+
+                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[10], $this->aIPs)) {
+                        $this->aSessions[] = $sSessionId;
                         $m_sUserStat = $m_aSplitIds[12];
                         $this->aTotalStats[] = $m_sUserStat;
                     }
