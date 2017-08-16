@@ -25,19 +25,15 @@ class WebServer
     protected $oFileIterator;
     protected $iFiles;
 
-    public function __construct($rootDir = null, $options = [])
+    public function __construct(Config $oConfig)
     {
-        if ($rootDir) {
-            $this->rootDir = $rootDir;
-        } else {
-            $this->rootDir = getcwd();
-        }
+        $this->rootDir = $oConfig->getValue('root_dir') ? $oConfig->getValue('root_dir') : getcwd();
 
-        $this->site = isset($options['site_name']) ? $options['site_name'] : '';
+        $this->site = $oConfig->getValue('site_name') ? $oConfig->getValue('site_name') : '';
 
         $this->siteDir = $this->rootDir . $this->site . DIRECTORY_SEPARATOR;
         $this->aTotalStats = [];
-        $this->aIPs = isset($options['ignored_ips']) ? $options['ignored_ips'] : $this->aIPs;
+        $this->aIPs = $oConfig->getValue('ignored_ips') ? $oConfig->getValue('ignored_ips') : $this->aIPs;
 
         $this->aBrowsers = [];
         $this->aSessions = [];
