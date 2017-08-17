@@ -36,5 +36,12 @@ $browserCheck = new IIS($config);
 $browserCheck->findFiles();
 $browserCheck->execute();
 		
+// Retrieve an array of browsers and their usage counts
 $browserCheck->getBrowserStats();
+
+// Retrieve an array of unique session ids
+$browserCheck->getSessionsIds();
+
+// Retrieve an array of unique user agents
+$browserCheck->getUserAgents();
 ```

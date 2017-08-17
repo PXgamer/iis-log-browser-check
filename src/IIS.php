@@ -2,21 +2,28 @@
 
 namespace pxgamer\LogBrowserChecker;
 
+/**
+ * Class IIS
+ * @package pxgamer\LogBrowserChecker
+ */
 class IIS extends WebServer
 {
-    protected $aSplitIds;
-    protected $aFiles;
-    protected $totalPercent;
-
+    /**
+     * IIS constructor.
+     * @param Config $oConfig
+     */
     public function __construct(Config $oConfig)
     {
         Parent::__construct($oConfig);
-        $this->aFiles = 0;
-        $this->totalPercent = 0;
+        $this->iTotalPercent = 0;
 
         return $this;
     }
 
+    /**
+     * @return $this
+     * @throws \ErrorException
+     */
     public function execute()
     {
         foreach ($this->aUserAgents as $cur) {
@@ -32,16 +39,19 @@ class IIS extends WebServer
 
         $totalBrowsers = array_sum($this->aBrowsers);
         foreach ($this->aBrowsers as $b) {
-            $this->totalPercent = $this->totalPercent + (($b / $totalBrowsers) * 100);
+            $this->iTotalPercent = $this->iTotalPercent + (($b / $totalBrowsers) * 100);
         }
 
-        if ($this->totalPercent < 98) {
+        if ($this->iTotalPercent < 98) {
             throw new \ErrorException(self::ERROR_NOT_TOTAL_PERCENTAGE);
         }
 
         return $this;
     }
 
+    /**
+     * @param \SplFileInfo $fileInfo
+     */
     protected function statsRunner(\SplFileInfo $fileInfo)
     {
         parent::statsRunner($fileInfo);
@@ -59,7 +69,9 @@ class IIS extends WebServer
 
                     $sSessionId = $this->getSessionFromCookieString($aCookieSections[1]);
 
-                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[$this->oConfig->getValue('ip_column')], $this->aIPs)) {
+                    if (!in_array($sSessionId,
+                            $this->aSessions) && !in_array($m_aSplitIds[$this->oConfig->getValue('ip_column')],
+                            $this->aIPs)) {
                         $this->aSessions[] = $sSessionId;
                         $m_sUserStat = $m_aSplitIds[$this->oConfig->getValue('session_column')];
                         $this->aUserAgents[] = $m_sUserStat;
