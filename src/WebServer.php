@@ -12,9 +12,13 @@ class WebServer
     protected $rootDir;
     protected $siteName;
     protected $siteDir;
-    protected $aTotalStats;
+    protected $aUserAgents;
     protected $aBrowsers;
     protected $aSessions;
+    /**
+     * @var Config
+     */
+    protected $oConfig;
     /**
      * @var Browscap
      */
@@ -25,19 +29,17 @@ class WebServer
     protected $oFileIterator;
     protected $iFiles;
 
-    public function __construct($rootDir = null, $options = [])
+    public function __construct(Config $oConfig)
     {
-        if ($rootDir) {
-            $this->rootDir = $rootDir;
-        } else {
-            $this->rootDir = getcwd();
-        }
+        $this->oConfig = $oConfig;
 
-        $this->site = isset($options['site_name']) ? $options['site_name'] : '';
+        $this->rootDir = $this->oConfig->getValue('root_dir') ? $this->oConfig->getValue('root_dir') : getcwd();
 
-        $this->siteDir = $this->rootDir . $this->site . DIRECTORY_SEPARATOR;
-        $this->aTotalStats = [];
-        $this->aIPs = isset($options['ignored_ips']) ? $options['ignored_ips'] : $this->aIPs;
+        $this->siteName = $this->oConfig->getValue('site_name') ? $this->oConfig->getValue('site_name') : '';
+
+        $this->siteDir = $this->rootDir . DIRECTORY_SEPARATOR . $this->siteName;
+        $this->aUserAgents = [];
+        $this->aIPs = $this->oConfig->getValue('ignored_ips') ? $this->oConfig->getValue('ignored_ips') : $this->aIPs;
 
         $this->aBrowsers = [];
         $this->aSessions = [];
@@ -62,6 +64,16 @@ class WebServer
     public function getBrowserStats()
     {
         return $this->aBrowsers;
+    }
+
+    public function getSessionsIds()
+    {
+        return $this->aSessions;
+    }
+
+    public function getUserAgents()
+    {
+        return $this->aUserAgents;
     }
 
     public function execute()

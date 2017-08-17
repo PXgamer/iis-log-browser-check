@@ -8,9 +8,9 @@ class IIS extends WebServer
     protected $aFiles;
     protected $totalPercent;
 
-    public function __construct($rootDir = null, $options = [])
+    public function __construct(Config $oConfig)
     {
-        Parent::__construct($rootDir, $options);
+        Parent::__construct($oConfig);
         $this->aFiles = 0;
         $this->totalPercent = 0;
 
@@ -19,7 +19,7 @@ class IIS extends WebServer
 
     public function execute()
     {
-        foreach ($this->aTotalStats as $cur) {
+        foreach ($this->aUserAgents as $cur) {
             $inp = str_replace("+", " ", $cur);
             $browser = $this->oBrowscap->getBrowser($inp);
 
@@ -46,7 +46,7 @@ class IIS extends WebServer
     {
         parent::statsRunner($fileInfo);
 
-        $currentFile = fopen($this->siteDir . $fileInfo, "r");
+        $currentFile = fopen($this->siteDir . DIRECTORY_SEPARATOR . $fileInfo, "r");
 
         if ($currentFile) {
             // Read through file
@@ -59,10 +59,10 @@ class IIS extends WebServer
 
                     $sSessionId = $this->getSessionFromCookieString($aCookieSections[1]);
 
-                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[6], $this->aIPs)) {
+                    if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[$this->oConfig->getValue('ip_column')], $this->aIPs)) {
                         $this->aSessions[] = $sSessionId;
-                        $m_sUserStat = $m_aSplitIds[7];
-                        $this->aTotalStats[] = $m_sUserStat;
+                        $m_sUserStat = $m_aSplitIds[$this->oConfig->getValue('session_column')];
+                        $this->aUserAgents[] = $m_sUserStat;
                     }
                 }
             }
