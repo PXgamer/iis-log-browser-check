@@ -19,7 +19,7 @@ class IIS extends WebServer
 
     public function execute()
     {
-        foreach ($this->aTotalStats as $cur) {
+        foreach ($this->aUserAgents as $cur) {
             $inp = str_replace("+", " ", $cur);
             $browser = $this->oBrowscap->getBrowser($inp);
 
@@ -62,7 +62,7 @@ class IIS extends WebServer
                     if (!in_array($sSessionId, $this->aSessions) && !in_array($m_aSplitIds[$this->oConfig->getValue('ip_column')], $this->aIPs)) {
                         $this->aSessions[] = $sSessionId;
                         $m_sUserStat = $m_aSplitIds[$this->oConfig->getValue('session_column')];
-                        $this->aTotalStats[] = $m_sUserStat;
+                        $this->aUserAgents[] = $m_sUserStat;
                     }
                 }
             }
