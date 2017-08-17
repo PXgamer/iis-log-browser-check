@@ -115,6 +115,7 @@ class WebServer
      */
     public function getSessionsIds()
     {
+        $this->aSessions = array_unique($this->aSessions);
         return $this->aSessions;
     }
 
@@ -125,6 +126,7 @@ class WebServer
      */
     public function getUserAgents()
     {
+        $this->aUserAgents = array_unique($this->aUserAgents);
         return $this->aUserAgents;
     }
 
