@@ -16,6 +16,10 @@ class WebServer
     protected $aBrowsers;
     protected $aSessions;
     /**
+     * @var Config
+     */
+    protected $oConfig;
+    /**
      * @var Browscap
      */
     protected $oBrowscap;
@@ -27,13 +31,15 @@ class WebServer
 
     public function __construct(Config $oConfig)
     {
-        $this->rootDir = $oConfig->getValue('root_dir') ? $oConfig->getValue('root_dir') : getcwd();
+        $this->oConfig = $oConfig;
 
-        $this->site = $oConfig->getValue('site_name') ? $oConfig->getValue('site_name') : '';
+        $this->rootDir = $this->oConfig->getValue('root_dir') ? $this->oConfig->getValue('root_dir') : getcwd();
 
-        $this->siteDir = $this->rootDir . $this->site . DIRECTORY_SEPARATOR;
+        $this->siteName = $this->oConfig->getValue('site_name') ? $this->oConfig->getValue('site_name') : '';
+
+        $this->siteDir = $this->rootDir . DIRECTORY_SEPARATOR . $this->siteName;
         $this->aTotalStats = [];
-        $this->aIPs = $oConfig->getValue('ignored_ips') ? $oConfig->getValue('ignored_ips') : $this->aIPs;
+        $this->aIPs = $this->oConfig->getValue('ignored_ips') ? $this->oConfig->getValue('ignored_ips') : $this->aIPs;
 
         $this->aBrowsers = [];
         $this->aSessions = [];
