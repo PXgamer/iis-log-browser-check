@@ -17,9 +17,9 @@ class Config
      * IIS constructor.
      * @param array $aConfigValues
      */
-    public function __construct($aConfigValues= [])
+    public function __construct($aConfigValues = [])
     {
-        $this->aConfigValues= $aConfigValues;
+        $this->aConfigValues = $aConfigValues;
     }
 
     /**
