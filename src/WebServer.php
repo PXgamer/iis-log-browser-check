@@ -12,7 +12,7 @@ class WebServer
     protected $rootDir;
     protected $siteName;
     protected $siteDir;
-    protected $aTotalStats;
+    protected $aUserAgents;
     protected $aBrowsers;
     protected $aSessions;
     /**
@@ -38,7 +38,7 @@ class WebServer
         $this->siteName = $this->oConfig->getValue('site_name') ? $this->oConfig->getValue('site_name') : '';
 
         $this->siteDir = $this->rootDir . DIRECTORY_SEPARATOR . $this->siteName;
-        $this->aTotalStats = [];
+        $this->aUserAgents = [];
         $this->aIPs = $this->oConfig->getValue('ignored_ips') ? $this->oConfig->getValue('ignored_ips') : $this->aIPs;
 
         $this->aBrowsers = [];
@@ -64,6 +64,16 @@ class WebServer
     public function getBrowserStats()
     {
         return $this->aBrowsers;
+    }
+
+    public function getSessionsIds()
+    {
+        return $this->aSessions;
+    }
+
+    public function getUserAgents()
+    {
+        return $this->aUserAgents;
     }
 
     public function execute()
