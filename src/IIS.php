@@ -22,7 +22,7 @@ class IIS extends WebServer
 
     /**
      * @return $this
-     * @throws \ErrorException
+     * @throws \Exception
      */
     public function execute()
     {
