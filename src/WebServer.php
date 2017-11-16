@@ -6,7 +6,6 @@ use BrowscapPHP\Browscap;
 
 /**
  * Class WebServer
- * @package pxgamer\LogBrowserChecker
  */
 class WebServer
 {
