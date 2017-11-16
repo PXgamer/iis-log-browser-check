@@ -14,7 +14,7 @@ class IIS extends WebServer
      */
     public function __construct(Config $oConfig)
     {
-        Parent::__construct($oConfig);
+        parent::__construct($oConfig);
         $this->iTotalPercent = 0;
 
         return $this;
@@ -69,9 +69,13 @@ class IIS extends WebServer
 
                     $sSessionId = $this->getSessionFromCookieString($aCookieSections[1]);
 
-                    if (!in_array($sSessionId,
-                            $this->aSessions) && !in_array($m_aSplitIds[$this->oConfig->getValue('ip_column')],
-                            $this->aIPs)) {
+                    if (!in_array(
+                        $sSessionId,
+                        $this->aSessions
+                    ) && !in_array(
+                        $m_aSplitIds[$this->oConfig->getValue('ip_column')],
+                        $this->aIPs
+                    )) {
                         $this->aSessions[] = $sSessionId;
                         $m_sUserStat = $m_aSplitIds[$this->oConfig->getValue('session_column')];
                         $this->aUserAgents[] = $m_sUserStat;

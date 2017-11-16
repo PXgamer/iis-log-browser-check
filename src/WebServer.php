@@ -135,7 +135,6 @@ class WebServer
      */
     public function execute()
     {
-
     }
 
     /**
@@ -145,7 +144,6 @@ class WebServer
      */
     protected function statsRunner(\SplFileInfo $fileInfo)
     {
-
     }
 
     /**
