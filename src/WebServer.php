@@ -6,7 +6,6 @@ use BrowscapPHP\Browscap;
 
 /**
  * Class WebServer
- * @package pxgamer\LogBrowserChecker
  */
 class WebServer
 {
@@ -135,7 +134,6 @@ class WebServer
      */
     public function execute()
     {
-
     }
 
     /**
@@ -145,7 +143,6 @@ class WebServer
      */
     protected function statsRunner(\SplFileInfo $fileInfo)
     {
-
     }
 
     /**

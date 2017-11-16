@@ -4,7 +4,6 @@ namespace pxgamer\LogBrowserChecker;
 
 /**
  * Class IIS
- * @package pxgamer\LogBrowserChecker
  */
 class Config
 {
