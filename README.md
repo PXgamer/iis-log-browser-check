@@ -12,8 +12,6 @@ A simple web server log checker to monitor the browser diversity on websites.
 ## Structure
 
 ```
-bin/
-config/
 src/
 tests/
 vendor/
