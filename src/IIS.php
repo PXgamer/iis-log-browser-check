@@ -7,6 +7,8 @@ namespace pxgamer\LogBrowserChecker;
  */
 class IIS extends WebServer
 {
+    const MINIMUM_PERCENTAGE = 98;
+
     /**
      * IIS constructor.
      * @param Config $oConfig
@@ -41,7 +43,7 @@ class IIS extends WebServer
             $this->iTotalPercent = $this->iTotalPercent + (($b / $totalBrowsers) * 100);
         }
 
-        if ($this->iTotalPercent < 98) {
+        if ($this->iTotalPercent < self::MINIMUM_PERCENTAGE) {
             throw new \ErrorException(self::ERROR_NOT_TOTAL_PERCENTAGE);
         }
 
